@@ -20,8 +20,16 @@ const adminOrders= require("./routes/adminOrderRoutes")
 
 const app = express();
 app.use(express.json());
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173", // for local development
+      "https://your-frontend-name.vercel.app", // ⚠️ replace with your actual frontend domain
+    ],
+    credentials: true,
+  })
+);
 
-app.use(cors());
 dotenv.config();
 
 const PORT = process.env.PORT || 3000;
